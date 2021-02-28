@@ -3,30 +3,64 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-let counter = 0;
 
+const root= document.getElementById('root');
+//As a recap, here is a summary of the main differences between props and state:
 
+// - We use props to pass data to components.
+// - Components use state to manage their data.
+// - Props are read-only and cannot be modified.
+// - State can be modified by its component using the setState() method.
+// - The setState() method results in re-rendering the component affected. 
+// Components that have state are called stateful, while components that do not use state are called stateless.
 
-function Item(props){
-  return <div class='item'>
-    <b>Name:</b> {props.name} <br />
-    <b>Price:</b> ${[props.price]}
-  </div>;
+class Hello extends React.Component{
+  state={
+    name:'epic state props name',
+    counter: 0
+  }
+  increment = ()=>{
+    this.setState({
+      counter: this.state.counter+1,
+      name:this.state.name+' Hi clicked button'
+    });
+  }
+
+  render(){
+    return <div>
+    <h1>Hello this is {this.state.name}.</h1>
+    <p>This is the count currently {this.state.counter}</p>
+    <button onClick={this.increment}>Increase counter, click me!</button>
+    </div>;
+  }
 }
 
-function EpicApp(){
-  return <div>
-    <Item name='Cheese' price='4.59'/>
-    <p> </p>
-    <Item name='Epic' price='993494239.32'/>
-    <p> </p>
-    <Item name='Ice Cream' price='2234, geez expensive'/>
-  </div>;
-}
+const el=<Hello />;
 
-const el= <EpicApp />;
+ReactDOM.render(el,root);
 
-ReactDOM.render(el,document.getElementById('root'));
+
+
+// function Item(props){
+//   return <div class='item'>
+//     <b>Name:</b> {props.name} <br />
+//     <b>Price:</b> ${[props.price]}
+//   </div>;
+// }
+
+// function EpicApp(){
+//   return <div>
+//     <Item name='Cheese' price='4.59'/>
+//     <p> </p>
+//     <Item name='Epic' price='993494239.32'/>
+//     <p> </p>
+//     <Item name='Ice Cream' price='2234, geez expensive'/>
+//   </div>;
+// }
+
+// const el= <EpicApp />;
+
+// ReactDOM.render(el,document.getElementById('root'));
 
 // //props act like objects that get passed in to the function
 // function Test(props) {
